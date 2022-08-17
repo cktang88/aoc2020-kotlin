@@ -1,5 +1,5 @@
 
 fun main() {
     println("Hello World!")
-    prob1()
+    p1part2()
 }

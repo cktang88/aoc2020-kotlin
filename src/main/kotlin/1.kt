@@ -1,20 +1,30 @@
 import java.io.File
 
+val SUM = 2020
+val fileName = "src/main/kotlin/1.txt"
+
 fun prob1() {
-    val fileName = "src/main/kotlin/1.txt"
 //    File(fileName).forEachLine { println(it) }
     val nums = File(fileName).readLines().map(String::toInt)
 //    var mp = nums.map { it to 2020 - it }.toMap()
-    val mp = nums.associateBy { 2020 - it }
+    val mp = nums.associateBy { SUM - it }
 
     println(mp)
 //    println(mp)
-    val entry = mp.filter { (_,v) -> v in mp }.firstNotNullOf{it}
-    println(entry)
+    val entry = mp.filter { (_, v) -> v in mp }.firstNotNullOf { it }
+    println(entry.let { (a, b) -> a * b })
 }
 
 fun p1part2() {
-    val fileName = "src/main/kotlin/1.txt"
-//    File(fileName).forEachLine { println(it) }
+
+    fun List<Int>.getPair(sum: Int): Map.Entry<Int, Int>? {
+        val mp = associateBy { sum - it }
+        return mp.filter { (_, v) -> v in mp }.firstNotNullOfOrNull { it }
+    }
+
     val nums = File(fileName).readLines().map(String::toInt)
+    val mp = nums.map { it to nums.getPair(SUM - it) }.toMap()
+    val entry = mp.filter { (_, v) -> v != null }.firstNotNullOf { it }
+    // hacky assert
+    println(entry.let { (k, v) -> k * v!!.key * v.value })
 }
