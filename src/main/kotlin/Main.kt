@@ -1,5 +1,5 @@
 
 fun main() {
     println("Hello World!")
-    p1part2()
+    p2part2()
 }

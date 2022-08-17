@@ -1,7 +1,7 @@
 import java.io.File
 
-const val SUM = 2020
-const val fileName = "src/main/kotlin/1.txt"
+private const val SUM = 2020
+private const val fileName = "src/main/kotlin/1.txt"
 
 fun prob1() {
 //    File(fileName).forEachLine { println(it) }
