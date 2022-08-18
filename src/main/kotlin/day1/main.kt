@@ -1,9 +1,11 @@
+package day1
+
 import java.io.File
 
 private const val SUM = 2020
-private const val fileName = "src/main/kotlin/1.txt"
+private const val fileName = "src/main/kotlin/day1/input.txt"
 
-fun prob1() {
+private fun part1() {
 //    File(fileName).forEachLine { println(it) }
     val nums = File(fileName).readLines().map(String::toInt)
 //    var mp = nums.map { it to 2020 - it }.toMap()
@@ -14,7 +16,7 @@ fun prob1() {
     println(entry.let { (a, b) -> a * b })
 }
 
-fun p1part2() {
+private fun part2() {
 
     fun List<Int>.getPair(sum: Int): Map.Entry<Int, Int>? {
         val mp = associateBy { sum - it }
@@ -26,4 +28,9 @@ fun p1part2() {
     val entry = mp.filter { (_, v) -> v != null }.firstNotNullOf { it }
     // hacky assert
     println(entry.let { (k, v) -> k * v!!.key * v.value })
+}
+
+fun main() {
+    part1()
+    part2()
 }

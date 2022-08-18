@@ -1,6 +1,8 @@
+package day2
+
 import java.io.File
 
-private const val fileName = "src/main/kotlin/2.txt"
+private const val fileName = "src/main/kotlin/day2/input.txt"
 
 data class PasswordEntry(
     val password: String,
@@ -21,12 +23,17 @@ data class PasswordEntry(
     fun validatePart2() = (password[range.first - 1] == letter) xor (password[range.last - 1] == letter)
 }
 
-fun p2part1() {
+private fun part1() {
     val entries = File(fileName).readLines().map(PasswordEntry::parse)
     println(entries.count { it.validate() })
 }
 
-fun p2part2() {
+private fun part2() {
     val entries = File(fileName).readLines().map(PasswordEntry::parse)
     println(entries.count { it.validatePart2() })
+}
+
+fun main() {
+    part1()
+    part2()
 }
